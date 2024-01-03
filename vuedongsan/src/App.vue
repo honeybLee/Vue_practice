@@ -1,4 +1,15 @@
 <template>
+  <div class="black-bg">
+    <div class="white-gb">
+      <h4>상세페이지임</h4>
+      <p>상세페이지 내용임</p>
+    </div>
+  </div>
+
+
+
+
+
   <h3>원룸샵 ^ㅅ^</h3>
   <img alt="Vue logo" src="./assets/logo.png">
 
@@ -18,16 +29,19 @@
 
   <!--Event Handler Begin-->
   <div>
+    <img src="./assets/room0.jpg" class="room-img">
     <h4>{{ products[0] }}</h4>
     <p> 50만원 </p>
     <button @click="click_report[0] += 1"> 허위매물 신고 </button> <span>신고수: {{ click_report[0] }}</span>
   </div>
   <div>
+    <img src="./assets/room1.jpg" class="room-img">
     <h4>{{ products[1] }}</h4>
     <p> 60만원 </p>
     <button @mouseover="click_report[1] += 10"> 허위매물 신고 </button> <span>신고수: {{ click_report[1] }}</span>
   </div>
   <div>
+    <img src="./assets/room2.jpg" class="room-img">
     <h4>{{ products[2] }}</h4>
     <p> 70만원 </p>
     <button @click="click_func"> 허위매물 신고 </button> <span>신고수: {{ click_report[2] }}</span>
@@ -49,7 +63,7 @@ export default {
       click_report: [0, 0, 0]
     }
   },
-  
+
   // Function
   methods: {
     click_func() {
@@ -67,6 +81,11 @@ export default {
 
 
 <style>
+.room-img {
+  width: 50%;
+  margin-top: 40px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
