@@ -2,10 +2,10 @@
 <template>
   <!-- Modal Begin -->
   <div class="black-bg" v-if="modal_isopen == true">
-    <div  class="white-bg">
+    <div class="white-bg">
       <h4> 상세페이지임</h4>
       <p>상세페이지 내용임</p>
-      <button @click="modal_isopen=false"> Close </button>
+      <button @click="modal_isopen = false"> Close </button>
     </div>
   </div>
   <!-- Modal End -->
@@ -30,29 +30,44 @@
 
   <!--Event Handler Begin-->
   <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 id="product_0" @click="modal_isopen = true">{{ products[0] }}</h4>
-    <p> 50만원 </p>
+    <img :src=oneroom_data[0].image class="room-img">
+    <h4 id="product_0" @click="modal_isopen = true">{{ oneroom_data[0].title }}</h4>
+    <p> Price: {{ oneroom_data[0].price }} Won </p>
     <button @click="click_report[0] += 1"> 허위매물 신고 </button> <span>신고수: {{ click_report[0] }}</span>
   </div>
   <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{ products[1] }}</h4>
-    <p> 60만원 </p>
+    <img :src=oneroom_data[1].image class="room-img">
+    <h4 id="product_1" @click="modal_isopen = true">{{ oneroom_data[1].title }}</h4>
+    <p> Price: {{ oneroom_data[1].price }} Won </p>
     <button @mouseover="click_report[1] += 10"> 허위매물 신고 </button> <span>신고수: {{ click_report[1] }}</span>
   </div>
   <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{ products[2] }}</h4>
-    <p> 70만원 </p>
+    <img :src=oneroom_data[2].image class="room-img">
+    <h4 id="product_1" @click="modal_isopen = true">{{ oneroom_data[2].title }}</h4>
+    <p> Price: {{ oneroom_data[2].price }} Won </p>
     <button @click="click_func"> 허위매물 신고 </button> <span>신고수: {{ click_report[2] }}</span>
   </div>
   <!--Event Handler End-->
+
+  <!--Event Handler Iteration Begin-->
+  <!-- <data_div v-for="(iter, i) in oneroom_data" :key="i">
+    <div>
+      <img :src=i.img class="room-img">
+      <h4 @click="modal_isopen = true">{{ i.title }}</h4>
+      <p> Price: {{ iter[0].price }} Won </p>
+      <button @click="click_report[0] += 1"> 허위매물 신고 </button> <span>신고수: {{ click_report[0] }}</span>
+    </div>
+  </data_div> -->
+  <!--Event Handler Iteration End-->
 </template>
 
 
 <!-- =========================== JavaScript =========================== -->
 <script>
+
+import { oneroom_array } from './assets/oneroom.js'
+// data; // import 한 변수는 어디선가는 사용해줘야 오류가 안남
+
 export default {
   name: 'App',
   // Data 보관함
@@ -64,6 +79,7 @@ export default {
       menu_array: ['Home', 'Products', 'About'],
       click_report: [0, 0, 0],
       modal_isopen: false,
+      oneroom_data: oneroom_array,
     }
   },
 
@@ -108,6 +124,7 @@ div {
   border-radius: 8px;
   padding: 20px;
 }
+
 /* modal end */
 
 .room-img {
