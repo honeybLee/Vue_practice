@@ -20,16 +20,17 @@
   </div>
 
   <!-- div 에 For문 쓰기 Begin -->
-  <!-- <div class="product">
-    <div v-for="i in products" :key="i">
-      <h4>{{ i }}</h4>
-      <p>가격: 50만원</p>
+  <div class="product">
+    <div v-for="i in oneroom_data" :key="i">
+      <img :src=i.image class="room-img">
+      <h4 id="product_0" @click="modal_isopen = true">{{ i.title }}</h4>
+      <p> Price: {{ i.price }} Won </p>
+      </div>
     </div>
-  </div> -->
-  <!-- div 에 For문 쓰기 End-->
+    <!-- div 에 For문 쓰기 End-->
 
-  <!--Event Handler Begin-->
-  <div>
+    <!--Event Handler Begin-->
+    <!-- <div>
     <img :src=oneroom_data[0].image class="room-img">
     <h4 id="product_0" @click="modal_isopen = true">{{ oneroom_data[0].title }}</h4>
     <p> Price: {{ oneroom_data[0].price }} Won </p>
@@ -46,11 +47,11 @@
     <h4 id="product_1" @click="modal_isopen = true">{{ oneroom_data[2].title }}</h4>
     <p> Price: {{ oneroom_data[2].price }} Won </p>
     <button @click="click_func"> 허위매물 신고 </button> <span>신고수: {{ click_report[2] }}</span>
-  </div>
-  <!--Event Handler End-->
+  </div> -->
+    <!--Event Handler End-->
 
-  <!--Event Handler Iteration Begin-->
-  <!-- <data_div v-for="(iter, i) in oneroom_data" :key="i">
+    <!--Event Handler Iteration Begin-->
+    <!-- <data_div v-for="(iter, i) in oneroom_data" :key="i">
     <div>
       <img :src=i.img class="room-img">
       <h4 @click="modal_isopen = true">{{ i.title }}</h4>
@@ -58,7 +59,7 @@
       <button @click="click_report[0] += 1"> 허위매물 신고 </button> <span>신고수: {{ click_report[0] }}</span>
     </div>
   </data_div> -->
-  <!--Event Handler Iteration End-->
+    <!--Event Handler Iteration End-->
 </template>
 
 
