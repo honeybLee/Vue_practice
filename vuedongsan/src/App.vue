@@ -3,8 +3,10 @@
   <!-- Modal Begin -->
   <div class="black-bg" v-if="modal_isopen == true">
     <div class="white-bg">
-      <h4> 상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <h4>{{ oneroom_data[clicked_obj].title }}</h4>
+      <img :src="oneroom_data[clicked_obj].image">
+      <p>{{ oneroom_data[clicked_obj].content }}</p>
+      <p>Price: {{ oneroom_data[clicked_obj].price }}</p>
       <button @click="modal_isopen = false"> Close </button>
     </div>
   </div>
@@ -19,18 +21,30 @@
     <a v-for="(iter, i) in menu_array" :key="i">{{ iter }}</a>
   </div>
 
+
+  <div v-if="clicked_obj == 0">
+    0번 눌렀어요
+  </div>
+  <div v-else-if="clicked_obj == 1">
+    1번 눌렀어요
+  </div>
+  <div v-else>
+    0번과 1번 외에 눌렀어요
+  </div>
+
+
   <!-- div 에 For문 쓰기 Begin -->
   <div class="product">
-    <div v-for="i in oneroom_data" :key="i">
-      <img :src=i.image class="room-img">
-      <h4 id="product_0" @click="modal_isopen = true">{{ i.title }}</h4>
-      <p> Price: {{ i.price }} Won </p>
-      </div>
+    <div v-for="(a, i) in oneroom_data" :key="i">
+      <img :src=a.image class="room-img" @click="modal_isopen = true; clicked_obj = i">
+      <h4 id="product_0">{{ a.title }}</h4>
+      <p> Price: {{ a.price }} Won </p>
     </div>
-    <!-- div 에 For문 쓰기 End-->
+  </div>
+  <!-- div 에 For문 쓰기 End-->
 
-    <!--Event Handler Begin-->
-    <!-- <div>
+  <!--Event Handler Begin-->
+  <!-- <div>
     <img :src=oneroom_data[0].image class="room-img">
     <h4 id="product_0" @click="modal_isopen = true">{{ oneroom_data[0].title }}</h4>
     <p> Price: {{ oneroom_data[0].price }} Won </p>
@@ -48,10 +62,10 @@
     <p> Price: {{ oneroom_data[2].price }} Won </p>
     <button @click="click_func"> 허위매물 신고 </button> <span>신고수: {{ click_report[2] }}</span>
   </div> -->
-    <!--Event Handler End-->
+  <!--Event Handler End-->
 
-    <!--Event Handler Iteration Begin-->
-    <!-- <data_div v-for="(iter, i) in oneroom_data" :key="i">
+  <!--Event Handler Iteration Begin-->
+  <!-- <data_div v-for="(iter, i) in oneroom_data" :key="i">
     <div>
       <img :src=i.img class="room-img">
       <h4 @click="modal_isopen = true">{{ i.title }}</h4>
@@ -59,7 +73,7 @@
       <button @click="click_report[0] += 1"> 허위매물 신고 </button> <span>신고수: {{ click_report[0] }}</span>
     </div>
   </data_div> -->
-    <!--Event Handler Iteration End-->
+  <!--Event Handler Iteration End-->
 </template>
 
 
@@ -81,6 +95,7 @@ export default {
       click_report: [0, 0, 0],
       modal_isopen: false,
       oneroom_data: oneroom_array,
+      clicked_obj: 0,
     }
   },
 
