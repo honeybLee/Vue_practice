@@ -13,7 +13,7 @@
   </div> -->
 
   <!-- Component Usage -->
-  <COM_Modal :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen"/>
+  <COM_Modal :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen" />
   <!-- Modal End -->
 
 
@@ -28,7 +28,7 @@
 
 
   <!--Component--->
-  <COM_Discount/>
+  <COM_Discount />
 
 
   <!--v-if 문 사용 방법-->
@@ -44,7 +44,9 @@
 
 
   <!-- Method 3: Component 사용 -->
-  <COM_Card :oneroom_data="oneroom_data"/>
+  <!-- <div v-if="modal_isopen == false"> -->
+    <COM_Card :oneroom_data="oneroom_data" :modal_isopen="modal_isopen"></COM_Card>
+  <!-- </div> -->
 
 
   <!-- Method 2: div 에 For문 쓰기 Begin -->
