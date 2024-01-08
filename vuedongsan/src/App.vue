@@ -1,16 +1,21 @@
 <!-- =========================== Vue =========================== -->
 <template>
   <!-- Modal Begin -->
-  <div class="black-bg" v-if="modal_isopen == true">
+  <!-- <div class="black-bg" v-if="modal_isopen == true">
     <div class="white-bg">
       <h4>{{ oneroom_data[clicked_obj].title }}</h4>
       <img :src="oneroom_data[clicked_obj].image">
       <p>{{ oneroom_data[clicked_obj].content }}</p>
       <p>Price: {{ oneroom_data[clicked_obj].price }}</p>
+      <discount/>
       <button @click="modal_isopen = false"> Close </button>
     </div>
-  </div>
+  </div> -->
+
+  <!-- Component Usage -->
+  <COM_Modal :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen"/>
   <!-- Modal End -->
+
 
   <h3>원룸샵 ^ㅅ^</h3>
   <img alt="Vue logo" src="./assets/logo.png">
@@ -22,6 +27,11 @@
   </div>
 
 
+  <!--Component--->
+  <COM_Discount />
+
+
+  <!--v-if 문 사용 방법-->
   <div v-if="clicked_obj == 0">
     0번 눌렀어요
   </div>
@@ -33,7 +43,10 @@
   </div>
 
 
-  <!-- div 에 For문 쓰기 Begin -->
+  <!-- Method 3: Component 사용 -->
+
+
+  <!-- Method 2: div 에 For문 쓰기 Begin -->
   <div class="product">
     <div v-for="(a, i) in oneroom_data" :key="i">
       <img :src=a.image class="room-img" @click="modal_isopen = true; clicked_obj = i">
@@ -43,7 +56,7 @@
   </div>
   <!-- div 에 For문 쓰기 End-->
 
-  <!--Event Handler Begin-->
+  <!--Method 1: Event Handler Begin-->
   <!-- <div>
     <img :src=oneroom_data[0].image class="room-img">
     <h4 id="product_0" @click="modal_isopen = true">{{ oneroom_data[0].title }}</h4>
@@ -80,8 +93,10 @@
 <!-- =========================== JavaScript =========================== -->
 <script>
 
-import { oneroom_array } from './assets/oneroom.js'
-// data; // import 한 변수는 어디선가는 사용해줘야 오류가 안남
+// import 한 변수는 어디선가는 사용해줘야 오류가 안남
+import { oneroom_array } from './assets/oneroom.js';
+import Discount from './Discount.vue';
+import Modal from './Modal.vue';
 
 export default {
   name: 'App',
@@ -106,9 +121,10 @@ export default {
     }
   },
 
-  //
+  // Components
   components: {
-
+    COM_Discount: Discount,
+    COM_Modal: Modal,
   }
 }
 </script>
