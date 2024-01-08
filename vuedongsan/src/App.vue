@@ -28,7 +28,7 @@
 
 
   <!--Component--->
-  <COM_Discount />
+  <COM_Discount/>
 
 
   <!--v-if 문 사용 방법-->
@@ -44,16 +44,17 @@
 
 
   <!-- Method 3: Component 사용 -->
+  <COM_Card :oneroom_data="oneroom_data"/>
 
 
   <!-- Method 2: div 에 For문 쓰기 Begin -->
-  <div class="product">
+  <!-- <div class="product">
     <div v-for="(a, i) in oneroom_data" :key="i">
       <img :src=a.image class="room-img" @click="modal_isopen = true; clicked_obj = i">
       <h4 id="product_0">{{ a.title }}</h4>
       <p> Price: {{ a.price }} Won </p>
     </div>
-  </div>
+  </div> -->
   <!-- div 에 For문 쓰기 End-->
 
   <!--Method 1: Event Handler Begin-->
@@ -97,6 +98,7 @@
 import { oneroom_array } from './assets/oneroom.js';
 import Discount from './Discount.vue';
 import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
@@ -125,6 +127,7 @@ export default {
   components: {
     COM_Discount: Discount,
     COM_Modal: Modal,
+    COM_Card: Card,
   }
 }
 </script>
