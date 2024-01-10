@@ -13,7 +13,8 @@
   </div> -->
 
   <!-- Component Usage -->
-  <COM_Modal :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen" />
+  <COM_Modal @closeModal="modal_isopen = false;"
+  :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen" />
   <!-- Modal End -->
 
 

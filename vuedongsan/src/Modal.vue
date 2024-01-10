@@ -5,13 +5,15 @@
       <img :src="oneroom_data[clicked_obj].image">
       <p>{{ oneroom_data[clicked_obj].content }}</p>
       <p>Price: {{ oneroom_data[clicked_obj].price }}</p>
-      <discount />
-      <!-- <button @click="modal_isopen = false"> Close </button> -->
+      <COM_Discount />
+      <button @click="$emit('closeModal')"> Close </button>
     </div>
   </div>
 </template>
 
 <script>
+import Discount from './Discount.vue';
+
 export default {
   name: 'ModalPopUp',
   props: {
@@ -19,7 +21,13 @@ export default {
     clicked_obj: Number,
     modal_isopen: Boolean,
   },
+
+  components: {
+    COM_Discount: Discount
+  }
 }
+
+
 </script>
 
 <style>
