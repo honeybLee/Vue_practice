@@ -21,7 +21,7 @@ export default {
     clicked_obj: Number,
     modal_isopen: Boolean,
   },
-
+  
   components: {
     COM_Discount: Discount
   }
