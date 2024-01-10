@@ -29,10 +29,11 @@
 
   <!--Component--->
   <COM_Discount />
+  <!--Component--->
 
 
   <!--v-if 문 사용 방법-->
-  <div v-if="clicked_obj == 0">
+  <!-- <div v-if="clicked_obj == 0">
     0번 눌렀어요
   </div>
   <div v-else-if="clicked_obj == 1">
@@ -40,13 +41,17 @@
   </div>
   <div v-else>
     0번과 1번 외에 눌렀어요
-  </div>
+  </div> -->
 
 
   <!-- Method 3: Component 사용 -->
-  <!-- <div v-if="modal_isopen == false"> -->
-    <COM_Card :oneroom_data="oneroom_data" :modal_isopen="modal_isopen"></COM_Card>
-  <!-- </div> -->
+  <!-- <div v-for="(oneroom, i) in oneroom_data" :key="i">
+    <COM_Card :oneroom_data="oneroom" :modal_isopen="modal_isopen"></COM_Card>
+  </div> -->
+
+  <!--이렇게도 가능-->
+  <COM_Card @openModal="modal_isopen=true; clicked_obj=$event"
+  :oneroom_data="oneroom_data[i]" v-for="(oneroom, i) in oneroom_data" :key="oneroom"/>
 
 
   <!-- Method 2: div 에 For문 쓰기 Begin -->
@@ -115,6 +120,7 @@ export default {
       modal_isopen: false,
       oneroom_data: oneroom_array,
       clicked_obj: 0,
+      오브젝트: { name: 'Kim', age: 20 },
     }
   },
 

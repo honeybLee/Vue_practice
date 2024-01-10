@@ -1,11 +1,8 @@
 <template>
     <div class="product">
-        <div v-for="(a, i) in oneroom_data" :key="i">
-            <img :src=a.image class="room-img" @click="modal_isopen">
-            <!-- <img :src=a.image class="room-img">  -->
-            <h4 id="product_0">{{ a.title }}</h4>
-            <p> Price: {{ a.price }} Won </p>
-        </div>
+        <img :src=oneroom_data.image class="room-img">
+        <h4 @click="$emit('openModal', oneroom_data.id)">{{ oneroom_data.title}}</h4>
+        <p> Price: {{ oneroom_data.price }} Won </p>
     </div>
 </template>
 
@@ -14,7 +11,6 @@ export default {
     name: 'com_card',
     props: {
         oneroom_data: Object,
-        modal_isopen: Boolean,
     }
 }
 
