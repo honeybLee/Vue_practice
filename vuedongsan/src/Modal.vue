@@ -4,7 +4,17 @@
       <h4>{{ oneroom_data[clicked_obj].title }}</h4>
       <img :src="oneroom_data[clicked_obj].image">
       <p>{{ oneroom_data[clicked_obj].content }}</p>
-      <p>Price: {{ oneroom_data[clicked_obj].price }}</p>
+      <!--긴 버전-->
+      <!-- <input @input="month = $event.target.value"> -->
+      <!--짧은 버전-->
+      <input v-model.number="month">
+      <input type="range" min="1" max="12">
+      <select v-model.number="month">
+        <option>3</option>
+        <option>6</option>
+        <option>12</option>
+      </select>
+      <p> {{ month }} 개월 선택함: {{ oneroom_data[clicked_obj].price * month }}</p>
       <COM_Discount />
       <button @click="$emit('closeModal')"> Close </button>
     </div>
@@ -16,12 +26,27 @@ import Discount from './Discount.vue';
 
 export default {
   name: 'ModalPopUp',
+  data() {
+    return {
+      month: 1,
+    }
+  },
+  watch: {
+    // a = 변경 후 데이터
+    // b = 변경 전 데이터
+    month(a, b){
+      if (isNaN(a)) {
+          alert('문자열 입력하지 마세요');
+          a = b;
+      }
+    }
+  },
   props: {
     oneroom_data: Object,
     clicked_obj: Number,
     modal_isopen: Boolean,
   },
-  
+
   components: {
     COM_Discount: Discount
   }
