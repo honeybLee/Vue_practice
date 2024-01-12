@@ -39,6 +39,7 @@
   <!--Component--->
 
   <button @click="priceSort"> 가격순정렬 </button>
+  <button @click="restore"> 되돌리기 </button>
 
 
   <!--v-if 문 사용 방법-->
@@ -119,7 +120,7 @@ import Card from './Card.vue';
 export default {
   name: 'App',
   // Data 보관함
-  // UI 의 상태를 보관 (React에선s Status 라고 함)
+  // UI 의 상태를 보관 (React에선 Status 라고 함)
   data() {
     return {
       products: ['역삼동 원룸', '천호동 원룸', '마포구 원룸'],
@@ -128,6 +129,7 @@ export default {
       click_report: [0, 0, 0],
       modal_isopen: false,
       oneroom_data: oneroom_array,
+      oneroom_origin: [...oneroom_array], // Shallow Copy
       clicked_obj: 0,
       오브젝트: { name: 'Kim', age: 20 },
     }
@@ -139,10 +141,13 @@ export default {
       this.click_report[2] += 5;
     },
     priceSort(){
-      this.oneroom_data.sort(function(a,b) {
-        return a - b
+      this.oneroom_data.sort(function(a, b) {
+        return a.price - b.price
       })
     },
+    restore(){
+      this.oneroom_data = [...this.oneroom_origin];
+    }
   },
 
   // Components
