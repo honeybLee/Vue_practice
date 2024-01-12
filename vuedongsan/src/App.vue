@@ -11,12 +11,18 @@
       <button @click="modal_isopen = false"> Close </button>
     </div>
   </div> -->
-
-  <!-- Component Usage -->
-  <COM_Modal @closeModal="modal_isopen = false;"
-  :oneroom_data="oneroom_data" :clicked_obj="clicked_obj" :modal_isopen="modal_isopen" />
   <!-- Modal End -->
 
+  <!-- Component Usage -->
+  <!-- <div class="start" :class="{ end: modal_isopen }">
+    <COM_Modal @closeModal="modal_isopen = false;" :oneroom_data="oneroom_data" :clicked_obj="clicked_obj"
+      :modal_isopen="modal_isopen" />
+  </div> -->
+
+  <Transition name="fade">
+    <COM_Modal @closeModal="modal_isopen = false;" :oneroom_data="oneroom_data" :clicked_obj="clicked_obj"
+      :modal_isopen="modal_isopen" />
+  </Transition>
 
   <h3>원룸샵 ^ㅅ^</h3>
   <img alt="Vue logo" src="./assets/logo.png">
@@ -31,6 +37,8 @@
   <!--Component--->
   <COM_Discount />
   <!--Component--->
+
+  <button @click="priceSort"> 가격순정렬 </button>
 
 
   <!--v-if 문 사용 방법-->
@@ -51,8 +59,8 @@
   </div> -->
 
   <!--이렇게도 가능-->
-  <COM_Card @openModal="modal_isopen=true; clicked_obj=$event"
-  :oneroom_data="oneroom_data[i]" v-for="(oneroom, i) in oneroom_data" :key="oneroom"/>
+  <COM_Card @openModal="modal_isopen = true; clicked_obj = $event" :oneroom_data="oneroom_data[i]"
+    v-for="(oneroom, i) in oneroom_data" :key="oneroom" />
 
 
   <!-- Method 2: div 에 For문 쓰기 Begin -->
@@ -129,7 +137,12 @@ export default {
   methods: {
     click_func() {
       this.click_report[2] += 5;
-    }
+    },
+    priceSort(){
+      this.oneroom_data.sort(function(a,b) {
+        return a - b
+      })
+    },
   },
 
   // Components
@@ -145,6 +158,37 @@ export default {
 
 <!-- =========================== CSS =========================== -->
 <style>
+/* vue animation begin */
+/* 시작 */
+.fade-enter-from {
+  opacity: 0;
+}
+
+/* 애니메이션 */
+.fade-enter-active {
+  transition: all 1s;
+}
+
+/* 끝 */
+.fade_enter-to {
+  opacity: 1;
+}
+
+/* vue animation end */
+
+/* modal animation begin */
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.end {
+  opacity: 1;
+}
+
+/* modal animation end */
+
+
 /* modal begin */
 body {
   margin: 0

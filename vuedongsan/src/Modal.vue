@@ -7,8 +7,8 @@
       <!--긴 버전-->
       <!-- <input @input="month = $event.target.value"> -->
       <!--짧은 버전-->
-      <input v-model.number="month">
-      <input type="range" min="1" max="12">
+      <input v-model.number="month" style="margin-right: 30px; width: 100px;">
+      <input type="range" min="1" max="12" style="margin-right: 30px;">
       <select v-model.number="month">
         <option>3</option>
         <option>6</option>
@@ -34,11 +34,21 @@ export default {
   watch: {
     // a = 변경 후 데이터
     // b = 변경 전 데이터
-    month(a, b){
-      if (isNaN(a)) {
-          alert('문자열 입력하지 마세요');
-          a = b;
+    month(a) {
+      if (this.isNumeric(a) == false) {
+        alert('문자열 입력하지 마세요');
+        this.month = 1;
       }
+      if (a > 12) {
+        alert('최대 개월수는 12개월입니다.');
+        this.month = 12;
+      }
+    }
+  },
+  methods: {
+    isNumeric(input) {
+      var numericRegexp = /^[0-9]+$/;
+      return numericRegexp.test(input);
     }
   },
   props: {
