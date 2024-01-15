@@ -3,6 +3,8 @@ import { createWebHistory, createRouter } from "vue-router";
 import COM_List from './components/List.vue'
 import COM_Home from './components/Home.vue'
 import COM_Detail from './components/Detail.vue'
+import COM_Author from './components/Author.vue'
+import COM_Comment from './components/Comment.vue'
 
 const routes = [
   {
@@ -16,9 +18,21 @@ const routes = [
     component: COM_Home,
   },
   {
-    path: "/detail/:idx*",
+    path: "/detail/:idx",
     name: 'Detail',
     component: COM_Detail,
+    children: [
+      {
+        path: "/author",
+        name: 'Author',
+        component: COM_Author,
+      },
+      {
+        path: "/comment",
+        name: 'Comment',
+        component: COM_Comment,
+      },
+    ]
   },
 ];
 
