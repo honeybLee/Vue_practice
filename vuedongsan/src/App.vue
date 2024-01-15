@@ -35,7 +35,7 @@
 
 
   <!--Component--->
-  <COM_Discount />
+  <COM_Discount v-if="showDiscount == true" />
   <!--Component--->
 
   <button @click="priceSort"> 가격순정렬 </button>
@@ -117,6 +117,7 @@ import Discount from './Discount.vue';
 import Modal from './Modal.vue';
 import Card from './Card.vue';
 
+
 export default {
   name: 'App',
   // Data 보관함
@@ -132,6 +133,7 @@ export default {
       oneroom_origin: [...oneroom_array], // Shallow Copy
       clicked_obj: 0,
       오브젝트: { name: 'Kim', age: 20 },
+      showDiscount: true,
     }
   },
 
@@ -140,15 +142,22 @@ export default {
     click_func() {
       this.click_report[2] += 5;
     },
-    priceSort(){
-      this.oneroom_data.sort(function(a, b) {
+    priceSort() {
+      this.oneroom_data.sort(function (a, b) {
         return a.price - b.price
       })
     },
-    restore(){
+    restore() {
       this.oneroom_data = [...this.oneroom_origin];
     }
   },
+
+  // Lifecycle Hook
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.showDiscount = false;
+  //   }, 2000);
+  // },
 
   // Components
   components: {
