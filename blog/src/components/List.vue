@@ -4,11 +4,10 @@
     <div class="card" style="width: 35rem; margin: 20px">
     <h5 class="card-title">{{data.title}}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{data.date}}</h6>
-    <!-- <router-link to='/detail'>
-      <router-view></router-view>
-      <router-view :detail_data="blog_data"></router-view>
+    <router-link :to = "'/detail/' + i">
       <a class="card-link">{{data.number}}_detail</a>
-    </router-link> -->
+      <router-view></router-view>
+    </router-link>
   </div>
   </div>
 </div>
