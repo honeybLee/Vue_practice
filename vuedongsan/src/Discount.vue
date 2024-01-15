@@ -19,12 +19,12 @@ export default {
     mounted() {
         if (this.discount_rate > 0) {
             this.intervalId = setInterval(() => {
-                this.discount_rate = Math.max(0, this.discount_rate - 1);
+                this.discount_rate -= 1;
             }, 200);
         }
     },
-    beforeunmount () {
-        if(this.intervalId) {
+    beforeUpdate() {
+        if (this.discount_rate == 0) {
             clearInterval(this.intervalId)
         }
     },
