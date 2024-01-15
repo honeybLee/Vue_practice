@@ -1,8 +1,9 @@
 <template>
+    <p> 선택된 detail idx:{{ $route.params.idx }} </p>
     <div>
-        <h3>Detail Page</h3>
-        <h5>Detail Title</h5>
-        <p>{{ detail_content }}</p>
+        <h3 class="container mt-4">Detail Page</h3>
+        <h5>{{blog_data[$route.params.idx].title}}</h5>
+        <p>{{blog_data[$route.params.idx].content}}</p>
     </div>
 </template>
 
@@ -11,11 +12,10 @@ export default {
     name: 'com_detail',
     data() {
         return {
-
         }
     },
     props: {
-        detail_content: String,
+        blog_data: Array,
     },
 }
 </script>

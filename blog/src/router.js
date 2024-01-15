@@ -16,7 +16,7 @@ const routes = [
     component: COM_Home,
   },
   {
-    path: "/detail",
+    path: "/detail/:idx*",
     name: 'Detail',
     component: COM_Detail,
   },

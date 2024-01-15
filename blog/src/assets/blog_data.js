@@ -1,5 +1,5 @@
 export default
-[
+  [
     {
       title: '첫 째 프로젝트 : 허위매물 전문 부동산 앱',
       content: 'Vue를 이용하면 비누같이 매끈한 앱을 만들 수 있습니다',

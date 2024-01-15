@@ -1,8 +1,4 @@
 <template>
-  <div class="container mt-4 mb-4">
-    <h2> Vue Practice Blog </h2>
-  </div>
-
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">HoneyBlog</a>
@@ -13,10 +9,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link to="/">
+              <a class="nav-link active" aria-current="page">Home</a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <router-link to="/list">
+              <a class="nav-link" href="#">Post List</a>
+            </router-link>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,14 +42,16 @@
       </div>
     </div>
   </nav>
-
-  <COM_List :blog_data="blog_data[i]" v-for="(data, i) in blog_data" :key="data" />
+  <!-- Routing -->
+  <!-- <router-view v-if="$route.path === '/list'" :blog_data="blog_data"></router-view>
+  <router-view v-else></router-view> -->
+  <router-view :blog_data="blog_data"></router-view>
 </template>
 
 
 
 <script>
-import List from './components/List.vue';
+// import List from './components/List.vue';
 import blog from './assets/blog_data.js';
 
 export default {
@@ -62,7 +64,6 @@ export default {
   },
 
   components: {
-    COM_List: List,
   }
 }
 </script>
