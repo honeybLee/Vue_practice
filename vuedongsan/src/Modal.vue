@@ -39,12 +39,15 @@ export default {
         alert('문자열 입력하지 마세요');
         this.month = 1;
       }
-      if (a > 12) {
-        alert('최대 개월수는 12개월입니다.');
-        this.month = 12;
-      }
     }
   },
+  beforeUpdate() {
+    if (this.month > 12) {
+      alert ('최대 개월수는 12개월이에요.')
+      this.month = 12;
+    }
+  },
+
   methods: {
     isNumeric(input) {
       var numericRegexp = /^[0-9]+$/;
