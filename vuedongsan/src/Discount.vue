@@ -18,17 +18,16 @@ export default {
     //   Lifecycle Hook
     mounted() {
         if (this.discount_rate > 0) {
-            setInterval(() => {
-                this.discount_rate -= 1;
+            this.intervalId = setInterval(() => {
+                this.discount_rate = Math.max(0, this.discount_rate - 1);
             }, 200);
         }
-
     },
-    beforeUpdate() {
-        if (this.discount_rate <= 0) {
-            this.discount_rate = 0
+    beforeunmount () {
+        if(this.intervalId) {
+            clearInterval(this.intervalId)
         }
-    }
+    },
 }
 </script>
 
